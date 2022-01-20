@@ -9,9 +9,6 @@ class Blog(models.Model):
                                   on_delete=models.CASCADE,
                                   primary_key=True,
                                   related_name='blog')
-    subscribers = models.ManyToManyField('settings.AUTH_USER_MODEL',
-                                         through='Subscriptions',
-                                         related_name='subscriptions')
     class Meta:
         ordering = ['-created']
 

@@ -7,6 +7,8 @@ urlpatterns = [
     #re_path(r'^api/', include('auth.urls')),
     re_path(r'^api/', include('posts.urls')),
     re_path(r'^api/', include('users.urls')),
+    re_path(r'^api/', include('blogs.urls')),
+    re_path(r'^api/', include('subscriptions.urls')),
 ]
 
 

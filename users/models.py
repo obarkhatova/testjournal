@@ -23,6 +23,6 @@ class User(AbstractUser):
         return ' '.join(filter(None, [self.firstname, self.lastname]))
 
     def __str__(self):
-        return self.get_full_name()
+        return self.get_full_name() or self.username
 
 
