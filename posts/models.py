@@ -23,9 +23,18 @@ class Post(models.Model):
     updated_on = models.DateTimeField(auto_now=True)
 
     class Meta:
-        ordering = ['-published']
+        ordering = ['-created']
 
     def __str__(self):
         return self.title
 
+
+class PostRead(models.Model):
+    user = models.ForeignKey('users.User', on_delete=models.CASCADE,
+                             related_name='posts_read')
+    post = models.ForeignKey('Post', on_delete=models.CASCADE,
+                             related_name='users_read')
+
+    class Meta:
+        unique_together = (("post", "user"),)
 

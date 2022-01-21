@@ -1,6 +1,4 @@
-from django.db.models import Subquery
 from rest_framework.generics import ListAPIView
-from rest_framework.mixins import ListModelMixin
 
 from .models import Subscription
 from .serializers import FeedSerializer

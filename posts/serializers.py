@@ -1,6 +1,7 @@
 from rest_framework import serializers
+from rest_framework import validators
 
-from .models import Post
+from .models import Post, PostRead
 from .utils import status_from_int_to_str
 from blogs.models import Blog
 
@@ -28,4 +29,36 @@ class PostSerializer(serializers.ModelSerializer):
         return representation
 
 
+class PostReadSerialiser(serializers.ModelSerializer):
+    class Meta:
+        model = PostRead
+        fields = '__all__'
+
+    def run_validators(self, value):
+        for validator in self.validators:
+            if isinstance(validator, validators.UniqueTogetherValidator):
+                self.validators.remove(validator)
+        super().run_validators(value)
+
+    def create(self, validated_data):
+        try:
+            return PostRead.objects.get(post=validated_data['post'],
+                                        user=validated_data['user'])
+        except PostRead.DoesNotExist:
+            return super().create(validated_data)
+
+    def to_internal_value(self, data):
+        try:
+            post_obj = Post.objects.get(pk=data['post'])
+            data.update({'post': post_obj})
+            return data
+        except Post.DoesNotExist:
+            raise serializers.ValidationError(f'Post {data["post"]} not found')
+
+    def to_representation(self, instance):
+        return {
+            'id': instance.id,
+            'post_id': instance.post_id,
+            'user_id': instance.user_id
+        }
 

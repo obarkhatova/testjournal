@@ -22,7 +22,7 @@ class SubscriptionCreateView(CreateModelMixin,
                 'user': request.user.id}
         serializer = self.get_serializer(data=data)
         serializer.is_valid(raise_exception=True)
-        self.perform_create(serializer)
+        serializer.save()
         return Response(serializer.data, status=status.HTTP_201_CREATED)
 
     def delete(self,  request, *args, **kwargs):
