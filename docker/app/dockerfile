@@ -1,0 +1,16 @@
+FROM python:3.8-slim
+RUN mkdir /install
+COPY ./requirements.txt /install
+RUN pip install -r /install/requirements.txt
+
+ENV PYTHONUNBUFFERED 1
+WORKDIR /app
+COPY ./ /app
+
+ENTRYPOINT python manage.py runserver
+
+EXPOSE 443:443
+
+
+
+

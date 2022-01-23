@@ -1,7 +1,7 @@
 from choicesenum import ChoicesEnum
 from choicesenum.django.fields import EnumIntegerField
 from django.db import models
-
+from users.models import User
 
 class STATUS(ChoicesEnum):
     DRAFT = (0, 'draft')
@@ -30,7 +30,7 @@ class Post(models.Model):
 
 
 class PostRead(models.Model):
-    user = models.ForeignKey('users.User', on_delete=models.CASCADE,
+    user = models.ForeignKey(User, on_delete=models.CASCADE,
                              related_name='posts_read')
     post = models.ForeignKey('Post', on_delete=models.CASCADE,
                              related_name='users_read')
