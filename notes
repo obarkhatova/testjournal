@@ -1,0 +1,33 @@
+postgres=# create database juornal;
+CREATE DATABASE
+postgres=# CREATE USER admin WITH PASSWORD 'P@ssw0rd';
+CREATE ROLE
+postgres=# GRANT ALL PRIVILEGES ON DATABASE juornal TO admin;
+GRANT
+postgres=# \c juornal
+You are now connected to database "juornal" as user "postgres".
+juornal=# CREATE EXTENSION citext;
+CREATE EXTENSION
+juornal=# 
+
+
+cd ~/testjuornal 
+docker image build -f docker/app/dockerfile -t app:v01 .
+
+sudo docker container run -d -i -t -p 443:443  \
+-e REGISTRY_HTTP_ADDR=0.0.0.0:443 \
+-e REGISTRY_HTTP_TLS_CERTIFICATE=~/certs/domain.crt \
+-e REGISTRY_HTTP_TLS_KEY=~/certs/domain.key \
+app:v01 
+
+sudo netstat -ntulp | grep 443 
+
+docker run --name postgres-14 -p 5433:5432 -e POSTGRES_USER=postgres -e POSTGRES_PASSWORD=postgres -e POSTGRES_DB=testdb -d postgres:14
+
+
+
+docker rm -f $(docker ps -a -q)
+
+
+manage.py spectacular --file schema.yml
+docker run -p 80:8080 -e SWAGGER_JSON=/schema.yml -v ${PWD}/schema.yml:/schema.yml swaggerapi/swagger-ui
