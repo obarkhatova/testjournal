@@ -67,6 +67,7 @@ AUTH_USER_MODEL = "users.User"
 REST_FRAMEWORK = {
     'DEFAULT_AUTHENTICATION_CLASSES': [
         'rest_framework.authentication.BasicAuthentication',
+        'rest_framework.authentication.SessionAuthentication',
         # 'rest_framework.authentication.TokenAuthentication',
     ],
     'DEFAULT_SCHEMA_CLASS': 'drf_spectacular.openapi.AutoSchema',
@@ -112,6 +113,22 @@ DATABASES = {
         'NAME': 'juornal',
         'USER': 'admin',
         'PASSWORD': 'P@ssw0rd',
+        'HOST': 'localhost',
+        'PORT': '5432',
+    },
+    'test': {
+        'ENGINE': 'django.db.backends.postgresql_psycopg2',
+        'NAME': 'juornal_test',
+        'USER': 'admin_test',
+        'PASSWORD': 'P@ssw0rd',
+        'HOST': 'localhost',
+        'PORT': '5432',
+    },
+    'ddl': {
+        'ENGINE': 'django.db.backends.postgresql_psycopg2',
+        'NAME': 'postgres',
+        'USER': 'postgres',
+        'PASSWORD': 'postgres',
         'HOST': 'localhost',
         'PORT': '5432',
     }
@@ -167,3 +184,4 @@ STATIC_ROOT = os.path.join(BASE_DIR, 'staticfiles')
 # https://docs.djangoproject.com/en/3.2/ref/settings/#default-auto-field
 
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
+APPEND_SLASH = False

@@ -1,5 +1,7 @@
 from django.db import models
-from users.models import User
+from django.conf import settings
+
+User = settings.AUTH_USER_MODEL
 
 
 class Blog(models.Model):

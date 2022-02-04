@@ -1,7 +1,10 @@
 from choicesenum import ChoicesEnum
 from choicesenum.django.fields import EnumIntegerField
 from django.db import models
-from users.models import User
+from django.conf import settings
+
+User = settings.AUTH_USER_MODEL
+
 
 class STATUS(ChoicesEnum):
     DRAFT = (0, 'draft')

@@ -8,7 +8,7 @@ class User(AbstractUser):
     firstname = models.CharField(max_length=150, blank=True)
     lastname = models.CharField(max_length=150, blank=True)
     email = CIEmailField(unique=True)
-    is_active=models.BooleanField(default=True)
+    is_active = models.BooleanField(default=True)
     date_joined = models.DateTimeField(auto_now_add=True, editable=False)
 
     EMAIL_FIELD = "email"

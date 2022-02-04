@@ -1,5 +1,6 @@
 from rest_framework import serializers
 
+
 class FeedSerializer(serializers.Serializer):
     fields = ['pk', 'blog_id', 'title', 'created']
 

@@ -1,7 +1,10 @@
 from django.db import models
+from django.conf import settings
 
 from blogs.models import Blog
-from users.models import User
+
+
+User = settings.AUTH_USER_MODEL
 
 
 class Subscription(models.Model):
