@@ -4,7 +4,9 @@ Test Journal's API
 .. toctree::
    :maxdepth: 2
 
-   users/index.rst
+    posts/index.rst
+    users/index.rst
+
 
 
 

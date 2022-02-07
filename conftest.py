@@ -80,8 +80,10 @@ def login_user(db):
 
     def inner(username, password):
         client = Client()
-        client.login(username=username, password=password)
-        return client
+        if client.login(username=username, password=password):
+            return client
+        else:
+            raise ValueError('Login fail {username} {password}')
     return inner
 
 
