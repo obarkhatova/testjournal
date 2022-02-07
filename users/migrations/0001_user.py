@@ -1,5 +1,7 @@
 import django.contrib.auth.models
 import django.contrib.postgres.fields.citext
+
+from django.contrib.postgres.operations import CITextExtension
 from django.db import migrations, models
 
 
@@ -9,10 +11,10 @@ class Migration(migrations.Migration):
 
     dependencies = [
         ('auth', '0012_alter_user_first_name_max_length'),
-        ('users', '0001_postgres_extensions'),
     ]
 
     operations = [
+        CITextExtension(),
         migrations.CreateModel(
             name='User',
             fields=[

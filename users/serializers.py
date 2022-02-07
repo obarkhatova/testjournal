@@ -9,9 +9,10 @@ class UserSerializer(serializers.ModelSerializer):
 
     class Meta:
         model = User
+        writable_fields = ('username', 'password', 'email')
+        read_only_fields = ('date_joined', 'id', 'last_login', 'is_staff')
+        fields = tuple(set(read_only_fields + writable_fields))
 
-        exclude = ('is_superuser', 'is_staff', )
-        read_only_fields = ('date_joined',)
         extra_kwargs = {'password': {'write_only': True}}
 
     def validate_email(self, data):

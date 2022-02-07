@@ -6,10 +6,13 @@ from rest_framework.viewsets import ViewSet
 
 
 from .serializers import LoginSerializer
+from core.authentication import enforsed_csrf_disabled
 
 
+@enforsed_csrf_disabled
 class AuthViewSet(ViewSet):
     permission_classes = ()
+
     serializer_class = LoginSerializer
 
     @action(detail=False, methods=['post'])

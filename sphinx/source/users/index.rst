@@ -5,5 +5,4 @@ users
 
    create.rst
    list.rst
-   update.rst
-   delete.rst
+

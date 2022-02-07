@@ -20,7 +20,7 @@ def create_admin(apps, schema_editor):
 class Migration(migrations.Migration):
 
     dependencies = [
-        ('users', '0002_user'),
+        ('users', '0001_user'),
     ]
 
     operations = [

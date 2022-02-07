@@ -110,8 +110,8 @@ WSGI_APPLICATION = 'juornal.wsgi.application'
 DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.postgresql_psycopg2',
-        'NAME': 'juornal',
-        'USER': 'admin',
+        'NAME': 'test_juornal',
+        'USER': 'admin_test',
         'PASSWORD': 'P@ssw0rd',
         'HOST': 'localhost',
         'PORT': '5432',

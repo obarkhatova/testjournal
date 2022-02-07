@@ -5,7 +5,7 @@ class Migration(migrations.Migration):
 
     dependencies = [
         ('blogs', '0001_initial'),
-        ('users', '0002_user'),
+        ('users', '0001_user'),
     ]
 
     operations = [
